@@ -1,4 +1,4 @@
-# MERN Quiz App with Emoji Feedback 🎯📊
+# MERN Quiz App 
 
 This is a full-stack MERN (MongoDB, Express, React, Node.js) application that allows users to register, take a 10-question MCQ quiz, and submit emoji-based feedback. The application also includes score calculation, progress tracking, and feedback storage.
 
