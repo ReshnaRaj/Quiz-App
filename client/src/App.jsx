@@ -7,6 +7,7 @@ import QuestionPage from "./pages/QuestionPage";
 import Result from "./pages/Result";
 import { Toaster } from "@/components/ui/sonner";
 import ProtectedRoute from "./Route/ProtectedRoute";
+import NotFound from "./pages/NotFound";
 function App() {
   return (
     <>
@@ -34,6 +35,7 @@ function App() {
               </ProtectedRoute>
             }
           />
+          <Route path="/*" element={<NotFound/>}/>
         </Routes>
       </Router>
     </>

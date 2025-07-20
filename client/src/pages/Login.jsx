@@ -52,14 +52,12 @@ const Login = () => {
       <Header />
       <main className="flex flex-col items-center justify-center flex-1 mt-20 text-center">
         <h1
-          className="text-3xl font-bold mb-6"
-          style={{
-            color: "#2A586F",
-            borderBottom: "3px solid #F9A826",
-            display: "inline-block",
-          }}
+          className="text-3xl font-bold mb-6 text-[#2A586F]"
         >
-          Login
+         <span className="relative inline-block">
+            <span className="bg-[#f5c45a] absolute inset-x-0 bottom-1 sm:bottom-1 md:bottom-0 h-2 z-0  "></span>
+            <span className="relative z-10">Login</span>
+          </span>
         </h1>
 
         <div className="bg-white shadow-md rounded-lg p-6 w-full max-w-md mt-4">

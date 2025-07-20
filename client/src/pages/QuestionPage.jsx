@@ -106,7 +106,10 @@ const QuestionPage = () => {
       <Header />
 
       <h2 className="text-center text-[28px] font-bold text-[#2A586F]">
-        Assess Your Intelligence
+        Assess Your <span className="relative inline-block">
+            <span className="bg-[#f5c45a] absolute inset-x-0 bottom-1 sm:bottom-1 md:bottom-2 h-2 z-0  "></span>
+            <span className="relative z-10">Intelligence</span>
+          </span>
       </h2>
 
       {/* Toggle Sidebar Button */}

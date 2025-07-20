@@ -4,17 +4,13 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
-// Mock user authentication (replace with real auth logic)
-const mockUser = {
-  name: "John Doe",
-  avatar: "",
-};
-const isAuthenticated = false; // toggle based on your auth state
+
+
 
 const Home = () => {
   return (
     <div className="min-h-screen bg-white px-4 md:px-6 py-6">
-      <Header isAuthenticated={isAuthenticated} user={mockUser} />
+      <Header />
 
       <main className="flex flex-col items-center justify-center flex-1 mt-22 text-center">
         <h1
@@ -23,7 +19,7 @@ const Home = () => {
         >
           Welcome to{" "}
           <span className="relative inline-block">
-            <span className="bg-[#F7931E] absolute inset-x-0 bottom-1 sm:bottom-1 md:bottom-2 h-2 z-0  "></span>
+            <span className="bg-[#f5c45a] absolute inset-x-0 bottom-1 sm:bottom-1 md:bottom-2 h-2 z-0  "></span>
             <span className="relative z-10">TSEEP Mastery Box</span>
           </span>
         </h1>
