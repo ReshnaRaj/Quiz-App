@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { fetchQuestion, saveResultToDatabase } from "../../api/auth";
 import { useSelector } from "react-redux";
 import QuestionSkeleton from "@/components/QuestionSkeleton";
-
+import { toast } from "sonner";
 const QuestionPage = () => {
   const navigate = useNavigate();
   const user = useSelector((state) => state.auth.user);
@@ -28,7 +28,10 @@ const QuestionPage = () => {
     JSON.parse(localStorage.getItem("quiz_finalized") || "{}")
   );
 
-  const progress = useMemo(() => ((currentIndex + 1) / 10) * 100, [currentIndex]);
+  const progress = useMemo(
+    () => ((currentIndex + 1) / 10) * 100,
+    [currentIndex]
+  );
   const currentQuestion = questionArr[currentIndex];
   const isDisabled = finalizedAnswers[currentIndex] === true;
 
@@ -88,7 +91,22 @@ const QuestionPage = () => {
     }, 0);
   };
 
+  // const handleSubmit = async () => {
+  //   if (!hasSubmitted) {
+  //     setHasSubmitted(true);
+  //     const score = calculateScore();
+  //     await saveResultToDatabase({ userId, score });
+  //     navigate("/result", { state: { userId, score } });
+  //   }
+  // };
   const handleSubmit = async () => {
+    const unanswered = questionArr.filter((_, index) => !answers.hasOwnProperty(index));
+console.log(unanswered,"un answered")
+    if (unanswered.length > 0) {
+      toast.error("Please answer all questions. Use the Previous button to complete them.");
+      return;
+    }
+
     if (!hasSubmitted) {
       setHasSubmitted(true);
       const score = calculateScore();
@@ -98,7 +116,11 @@ const QuestionPage = () => {
   };
 
   if (!questionArr.length || !currentQuestion) {
-    return <div className="text-center mt-10"><QuestionSkeleton /></div>;
+    return (
+      <div className="text-center mt-10">
+        <QuestionSkeleton />
+      </div>
+    );
   }
 
   return (
@@ -106,14 +128,19 @@ const QuestionPage = () => {
       <Header />
 
       <h2 className="text-center text-[28px] font-bold text-[#2A586F]">
-        Assess Your <span className="relative inline-block">
-            <span className="bg-[#f5c45a] absolute inset-x-0 bottom-1 sm:bottom-1 md:bottom-2 h-2 z-0  "></span>
-            <span className="relative z-10">Intelligence</span>
-          </span>
+        Assess Your{" "}
+        <span className="relative inline-block">
+          <span className="bg-[#f5c45a] absolute inset-x-0 bottom-1 sm:bottom-1 md:bottom-2 h-2 z-0  "></span>
+          <span className="relative z-10">Intelligence</span>
+        </span>
       </h2>
 
       {/* Toggle Sidebar Button */}
-      <button onClick={toggleSidebar} className="ml-5 cursor-pointer" aria-label="Toggle Sidebar">
+      <button
+        onClick={toggleSidebar}
+        className="ml-5 cursor-pointer"
+        aria-label="Toggle Sidebar"
+      >
         <svg width="29" height="29" viewBox="0 0 29 29" fill="none">
           <path
             d="M10.8748 26.5833H18.1248C24.1665 26.5833 26.5832 24.1667 26.5832 18.125V10.875C26.5832 4.83334 24.1665 2.41667 18.1248 2.41667H10.8748C4.83317 2.41667 2.4165 4.83334 2.4165 10.875V18.125C2.4165 24.1667 4.83317 26.5833 10.8748 26.5833Z"
@@ -168,7 +195,9 @@ const QuestionPage = () => {
               <div className="w-8 h-8 bg-[#2A586F] text-white rounded-full flex items-center justify-center font-semibold">
                 {currentIndex + 1}
               </div>
-              <p className="text-base font-semibold">{currentQuestion.question}</p>
+              <p className="text-base font-semibold">
+                {currentQuestion.question}
+              </p>
             </div>
 
             <RadioGroup
@@ -206,7 +235,9 @@ const QuestionPage = () => {
                         {option}
                       </label>
                     </div>
-                    {isSelected && <GoCheckCircle className="w-5 h-5 text-green-600" />}
+                    {isSelected && (
+                      <GoCheckCircle className="w-5 h-5 text-green-600" />
+                    )}
                   </div>
                 );
               })}
