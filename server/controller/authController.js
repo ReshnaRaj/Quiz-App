@@ -7,14 +7,15 @@ import Question from "../models/Question.js";
 
 export const signup = async (req, res) => {
   try {
-    console.log(req.body,"request body")
+    
     const { name, email, password,status,mobile } = req.body;
 
     // Check if user exists
-    const existingUser = await User.findOne({ mobile });
+    const existingUser = await User.findOne({ mobileNumber:mobile });
+   
 
     if (existingUser) {
-      return res.status(400).json({ message: "User already registered" });
+      return res.status(400).json({ message: "Mobile Number already registered" });
     }
 
     // Hash password

@@ -37,12 +37,16 @@ const Register = () => {
   });
   const handleSubmit = async (values, { setSubmitting, setFieldError }) => {
     try {
-      console.log("Form Values:", values);
+   
       const res = await signupUser(values);
       toast.success("Signup successful");
       if (res.status === 201) navigate("/login");
     } catch (err) {
-      setFieldError("general", err.message || "Signup failed");
+     const errorMessage =
+      err?.response?.data?.message || err?.message || "Something went wrong";
+ 
+    setFieldError("general", errorMessage);
+    toast.error(errorMessage);
     } finally {
       setSubmitting(false);
     }
