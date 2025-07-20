@@ -7,13 +7,12 @@ This is a full-stack MERN (MongoDB, Express, React, Node.js) application that al
 ## 📌 Features
 
 - 🔐 **User Authentication**
- - Login via mobile number & password
+  - Login via mobile number & password
   - JWT-based secure sessions
 
 - 🧠 **Quiz Functionality**
   - 10 pre-defined questions (fetched dynamically from MongoDB)
   - Radio button MCQ selection
-  - Timer with auto-submit on timeout
   - Score calculation and result display
 
 - 💬 **Emoji-Based Feedback**
@@ -22,8 +21,8 @@ This is a full-stack MERN (MongoDB, Express, React, Node.js) application that al
   - Feedback timestamped and linked with `userId`
 
 - 📈 **Responsive UI**
-  - Mobile-first responsive design with Tailwind CSS
-  - Live progress bar with timer
+  - Mobile-first responsive design with Tailwind CSS,shadcn
+  - Live progress bar 
   - Result summary with score & feedback form
-
-
+ 
+    
